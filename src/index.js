@@ -1,5 +1,6 @@
 import { Animated, Dimensions, FlatList, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
+import SafeAreaView from 'react-native-safe-area-view'
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
 
@@ -52,11 +53,6 @@ class Onboarding extends Component {
       animated: true,
       index: this.state.currentPage + 1,
     });
-  };
-
-  _onLayout = () => {
-    const { width, height } = Dimensions.get('window');
-    this.setState({ width, height });
   };
 
   keyExtractor = (item, index) => index.toString();
@@ -117,49 +113,47 @@ class Onboarding extends Component {
     }
 
     return (
-      <Animated.View
-        onLayout={this._onLayout}
-        style={{ flex: 1, backgroundColor, justifyContent: 'center' }}
-      >
-        <StatusBar barStyle={this.state.gone ? 'default' : barStyle} />
-        <FlatList
-          ref={list => {
-            this.flatList = list;
-          }}
-          data={pages}
-          pagingEnabled
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          renderItem={this.renderItem}
-          keyExtractor={this.keyExtractor}
-          onViewableItemsChanged={this.onSwipePageChange}
-          viewabilityConfig={itemVisibleHotfix}
-          initialNumToRender={1}
-          extraData={
-            this.state.width // ensure that the list re-renders on orientation change
-          }
-        />
-        <Pagination
-          gone={() => this.setState({ gone: true })}
-          isLight={isLight}
-          bottomBarHighlight={bottomBarHighlight || alterBottomColor}
-          bottomBarHeight={bottomBarHeight}
-          showSkip={showSkip}
-          showNext={showNext}
-          showDone={showDone}
-          numPages={pages.length}
-          currentPage={this.state.currentPage}
-          onSkip={onSkip}
-          onDone={onDone}
-          onNext={this.goNext}
-          skipLabel={skipLabel}
-          nextLabel={nextLabel}
-          SkipButtonComponent={SkipButtonComponent}
-          DoneButtonComponent={DoneButtonComponent}
-          NextButtonComponent={NextButtonComponent}
-          DotComponent={DotComponent}
-        />
-      </Animated.View>
+        <SafeAreaView
+            style={{ flex: 1, backgroundColor, justifyContent: 'center' }}>
+          <StatusBar barStyle={this.state.gone ? 'default' : barStyle} />
+          <FlatList
+              ref={list => {
+                  this.flatList = list;
+              }}
+              data={pages}
+              pagingEnabled
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              renderItem={this.renderItem}
+              keyExtractor={this.keyExtractor}
+              onViewableItemsChanged={this.onSwipePageChange}
+              viewabilityConfig={itemVisibleHotfix}
+              initialNumToRender={1}
+              extraData={
+                  this.state.width // ensure that the list re-renders on orientation change
+              }
+          />
+          <Pagination
+              gone={() => this.setState({ gone: true })}
+              isLight={isLight}
+              bottomBarHighlight={bottomBarHighlight || alterBottomColor}
+              bottomBarHeight={bottomBarHeight}
+              showSkip={showSkip}
+              showNext={showNext}
+              showDone={showDone}
+              numPages={pages.length}
+              currentPage={this.state.currentPage}
+              onSkip={onSkip}
+              onDone={onDone}
+              onNext={this.goNext}
+              skipLabel={skipLabel}
+              nextLabel={nextLabel}
+              SkipButtonComponent={SkipButtonComponent}
+              DoneButtonComponent={DoneButtonComponent}
+              NextButtonComponent={NextButtonComponent}
+              DotComponent={DotComponent}
+          />
+        </SafeAreaView>
     );
   }
 }

@@ -1,14 +1,14 @@
 {
-  "name": "react-native-onboarding-swiper",
-  "version": "0.4.2",
-  "description": "Delightful Onboarding for your React-Native App",
+  "name": "react-native-onboarding-safeview-swiper",
+  "version": "0.0.1",
+  "description": "Delightful SafeView Onboarding for your React-Native App",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jfilter/react-native-onboarding-swiper"
+    "url": "git+https://github.com/TheNee/react-native-onboarding-swiper"
   },
   "keywords": [
     "React",
@@ -23,14 +23,14 @@
     "Introduction",
     "Instructions"
   ],
-  "author": "Gosha Arinich, Johannes Filter",
+  "author": "Gosha Arinich, Johannes Filter, Thorge Neelsen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jfilter/react-native-onboarding-swiper/issues"
+    "url": "https://github.com/TheNee/react-native-onboarding-swiper/issues"
   },
-  "homepage": "https://github.com/jfilter/react-native-onboarding-swiper#readme",
   "dependencies": {
-    "tinycolor2": "^1.4.1"
+    "tinycolor2": "^1.4.1",
+    "react-native-safe-area-view": "^0.7.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

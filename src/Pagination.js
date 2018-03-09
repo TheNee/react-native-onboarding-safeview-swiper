@@ -1,8 +1,8 @@
-import { View } from 'react-native';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { View } from 'react-native'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import Dots from './Dots';
+import Dots from './Dots'
 
 const Pagination = ({
   numPages,
@@ -22,9 +22,9 @@ const Pagination = ({
   NextButtonComponent,
   DoneButtonComponent,
   DotComponent,
-  gone,
+  gone
 }) => {
-  const isLastPage = currentPage + 1 === numPages;
+  const isLastPage = currentPage + 1 === numPages
 
   const SkipButtonFinal = showSkip &&
     !isLastPage && (
@@ -33,12 +33,12 @@ const Pagination = ({
         skipLabel={skipLabel}
         onPress={() => {
           if (typeof onSkip === 'function') {
-            onSkip();
-            setTimeout(gone, 500);
+            onSkip()
+            setTimeout(gone, 500)
           }
         }}
       />
-    );
+    )
 
   const NextButtonFinal = showNext &&
     !isLastPage && (
@@ -47,7 +47,7 @@ const Pagination = ({
         isLight={isLight}
         onPress={onNext}
       />
-    );
+    )
 
   const DoneButtonFinal = showDone &&
     isLastPage && (
@@ -55,19 +55,19 @@ const Pagination = ({
         isLight={isLight}
         onPress={() => {
           if (typeof onDone === 'function') {
-            onDone();
-            setTimeout(gone, 500);
+            onDone()
+            setTimeout(gone, 500)
           }
         }}
       />
-    );
+    )
 
   return (
     <View
       style={{
         height: bottomBarHeight,
         ...styles.container,
-        ...(bottomBarHighlight ? styles.overlay : {}),
+        ...(bottomBarHighlight ? styles.overlay : {})
       }}
     >
       <View style={styles.buttonLeft}>{SkipButtonFinal}</View>
@@ -83,8 +83,8 @@ const Pagination = ({
         {DoneButtonFinal}
       </View>
     </View>
-  );
-};
+  )
+}
 
 Pagination.propTypes = {
   numPages: PropTypes.number.isRequired,
@@ -107,32 +107,32 @@ Pagination.propTypes = {
   NextButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
   DotComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
-    .isRequired,
-};
+    .isRequired
+}
 
 const styles = {
   container: {
     paddingHorizontal: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)'
   },
   buttonLeft: {
     width: 200,
     flexShrink: 1,
-    alignItems: 'flex-start',
+    alignItems: 'flex-start'
   },
   buttonRight: {
     width: 200,
     flexShrink: 1,
-    alignItems: 'flex-end',
+    alignItems: 'flex-end'
   },
   dots: {
-    flexShrink: 0,
-  },
-};
+    flexShrink: 0
+  }
+}
 
-export default Pagination;
+export default Pagination

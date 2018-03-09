@@ -1,6 +1,6 @@
-import { View, TouchableOpacity, Text } from 'react-native';
-import React from 'react';
-import PropTypes from 'prop-types';
+import { View, TouchableOpacity, Text } from 'react-native'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const TextButton = ({ size, onPress, textStyle, style, children }) => (
   <View style={{ flex: 0, paddingHorizontal: 10, ...style }}>
@@ -12,16 +12,16 @@ const TextButton = ({ size, onPress, textStyle, style, children }) => (
       <Text style={{ fontSize: size / 2.5, ...textStyle }}>{children}</Text>
     </TouchableOpacity>
   </View>
-);
+)
 
 TextButton.propTypes = {
   size: PropTypes.number.isRequired,
   onPress: PropTypes.func.isRequired,
-  textStyle: Text.propTypes.style,
-};
+  textStyle: Text.propTypes.style
+}
 
 TextButton.defaultProps = {
-  textStyle: null,
-};
+  textStyle: null
+}
 
-export default TextButton;
+export default TextButton

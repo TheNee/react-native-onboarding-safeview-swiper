@@ -1,6 +1,6 @@
-import React from 'react';
-import { View } from 'react-native';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { View } from 'react-native'
+import PropTypes from 'prop-types'
 
 const Dots = ({ isLight, numPages, currentPage, Dot }) => (
   <View style={styles.container}>
@@ -8,21 +8,21 @@ const Dots = ({ isLight, numPages, currentPage, Dot }) => (
       <Dot key={index} selected={index === currentPage} isLight={isLight} />
     ))}
   </View>
-);
+)
 
 Dots.propTypes = {
   isLight: PropTypes.bool.isRequired,
   numPages: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
-  Dot: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
-};
+  Dot: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired
+}
 
 const styles = {
   container: {
     flex: 0,
     flexDirection: 'row',
-    alignItems: 'center',
-  },
-};
+    alignItems: 'center'
+  }
+}
 
-export default Dots;
+export default Dots

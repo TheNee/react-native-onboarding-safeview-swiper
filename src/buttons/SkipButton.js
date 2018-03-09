@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import TextButton from './TextButton';
-import { BUTTON_SIZE, MARGIN_LEFT, getDefaultStyle } from './util';
+import TextButton from './TextButton'
+import { BUTTON_SIZE, MARGIN_LEFT, getDefaultStyle } from './util'
 
 const SkipButton = ({ skipLabel, isLight, ...rest }) => (
   <TextButton
@@ -12,6 +12,6 @@ const SkipButton = ({ skipLabel, isLight, ...rest }) => (
   >
     {skipLabel}
   </TextButton>
-);
+)
 
-export default SkipButton;
+export default SkipButton
