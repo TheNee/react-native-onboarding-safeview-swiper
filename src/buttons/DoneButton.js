@@ -14,7 +14,7 @@ const DoneButton = ({ isLight, ...rest }) => (
     }}
     {...rest}
   >
-    ✓
+    Done
   </SymbolButton>
 )
 
