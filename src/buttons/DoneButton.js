@@ -1,21 +1,17 @@
 import React from 'react'
 
-import SymbolButton from './SymbolButton'
+import TextButton from './TextButton'
 import { BUTTON_SIZE, MARGIN_RIGHT, getDefaultStyle } from './util'
 
-const DoneButton = ({ isLight, ...rest }) => (
-  <SymbolButton
+const DoneButton = ({ doneLabel, isLight, ...rest }) => (
+  <TextButton
     size={BUTTON_SIZE}
+    style={{ marginLeft: MARGIN_RIGHT }}
     textStyle={getDefaultStyle(isLight)}
-    style={{
-      borderRadius: BUTTON_SIZE / 2,
-      backgroundColor: 'rgba(255, 255, 255, 0.10)',
-      margin: MARGIN_RIGHT
-    }}
     {...rest}
   >
-    Done
-  </SymbolButton>
+    {doneLabel || 'Done'}
+  </TextButton>
 )
 
 export default DoneButton
