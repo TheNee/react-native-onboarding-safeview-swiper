@@ -2,36 +2,61 @@ import { Dimensions, Text, View } from 'react-native'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Page = ({ isLight, image, title, subtitle, width, height }) => {
-  let titleElement = title
-  if (typeof title === 'string' || title instanceof String) {
-    titleElement = (
-      <View style={styles.padding}>
-        <Text style={[styles.title, isLight ? styles.titleLight : {}]}>
-          {title}
-        </Text>
-      </View>
-    )
+const { width, height } = Dimensions.get('window')
+const potrait = height > width
+
+class Page extends React.PureComponent {
+  constructor (props) {
+    super(props)
+    this.state = {
+      layout: {
+        height: height,
+        width: width
+      }
+    }
   }
 
-  let subtitleElement = subtitle
-  if (typeof subtitle === 'string' || subtitle instanceof String) {
-    subtitleElement = (
-      <View style={styles.padding}>
-        <Text style={[styles.subtitle, isLight ? styles.subtitleLight : {}]}>
-          {subtitle}
-        </Text>
-      </View>
-    )
+  onLayout (event) {
+    this.setState({
+      layout: {
+        height: event.nativeEvent.layout.height,
+        width: event.nativeEvent.layout.width
+      }
+    })
   }
 
-  return (
-    <View style={[styles.container, { width, height }]}>
-      <View style={styles.image}>{image}</View>
-      {titleElement}
-      {subtitleElement}
-    </View>
-  )
+  render () {
+    const { isLight, image, title, subtitle } = this.props
+	  let titleElement = title
+	  if (typeof title === 'string' || title instanceof String) {
+		  titleElement = (
+  <View style={styles.padding}>
+          <Text style={[styles.title, isLight ? styles.titleLight : {}]}>
+      {title}
+    </Text>
+        </View>
+		  )
+	  }
+
+	  let subtitleElement = subtitle
+	  if (typeof subtitle === 'string' || subtitle instanceof String) {
+		  subtitleElement = (
+  <View style={styles.padding}>
+          <Text style={[styles.subtitle, isLight ? styles.subtitleLight : {}]}>
+      {subtitle}
+    </Text>
+        </View>
+		  )
+	  }
+
+	  return (
+  <View style={[styles.container, { width: this.state.width, height: this.state.height }]} onLayout={this.onLayout}>
+        <View style={styles.image}>{image}</View>
+        {titleElement}
+        {subtitleElement}
+      </View>
+	  )
+  }
 }
 
 Page.propTypes = {
@@ -43,9 +68,6 @@ Page.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired
 }
-
-const { width, height } = Dimensions.get('window')
-const potrait = height > width
 
 const styles = {
   container: {
