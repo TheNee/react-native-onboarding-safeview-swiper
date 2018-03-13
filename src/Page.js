@@ -3,59 +3,93 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const { width, height } = Dimensions.get('window')
-const potrait = height > width
 
-class Page extends React.PureComponent {
+class Page extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      layout: {
-        height: height,
-        width: width
-      }
+      height: Dimensions.get('window').height,
+      width: Dimensions.get('window').width
     }
+    Dimensions.addEventListener('change', (e) => {
+      this.setState(e.window)
+    })
+    console.tron.log(this.state.height + ' ' + this.state.width)
   }
 
-  onLayout (event) {
-    this.setState({
-      layout: {
-        height: event.nativeEvent.layout.height,
-        width: event.nativeEvent.layout.width
-      }
-    })
+  componentWillUnmount () {
+    Dimensions.removeEventListener('change')
   }
 
   render () {
     const { isLight, image, title, subtitle } = this.props
-	  let titleElement = title
-	  if (typeof title === 'string' || title instanceof String) {
-		  titleElement = (
-  <View style={styles.padding}>
+    const { height, width } = this.state
+    const potrait = height > width
+    const styles = {
+      container: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        padding: 10
+      },
+      image: {
+        height: potrait ? width / 2 : height / 3,
+        width: potrait ? height / 2 : width / 3,
+        marginVertical: 10,
+        alignItems: 'center'
+      },
+      padding: {
+        paddingHorizontal: 10
+      },
+      title: {
+        textAlign: 'center',
+        fontSize: 26,
+        color: '#fff',
+        paddingBottom: 15
+      },
+      titleLight: {
+        color: '#000'
+      },
+      subtitle: {
+        textAlign: 'center',
+        fontSize: 16,
+        color: 'rgba(255, 255, 255, 0.7)'
+      },
+      subtitleLight: {
+        color: 'rgba(0, 0, 0, 0.7)'
+      }
+    }
+
+    let titleElement = title
+    if (typeof title === 'string' || title instanceof String) {
+      titleElement = (
+        <View style={styles.padding}>
           <Text style={[styles.title, isLight ? styles.titleLight : {}]}>
-      {title}
-    </Text>
+            {title}
+          </Text>
         </View>
-		  )
-	  }
+      )
+    }
 
-	  let subtitleElement = subtitle
-	  if (typeof subtitle === 'string' || subtitle instanceof String) {
-		  subtitleElement = (
-  <View style={styles.padding}>
+    let subtitleElement = subtitle
+    if (typeof subtitle === 'string' || subtitle instanceof String) {
+      subtitleElement = (
+        <View style={styles.padding}>
           <Text style={[styles.subtitle, isLight ? styles.subtitleLight : {}]}>
-      {subtitle}
-    </Text>
+            {subtitle}
+          </Text>
         </View>
-		  )
-	  }
+      )
+    }
 
-	  return (
-  <View style={[styles.container, { width: this.state.width, height: this.state.height }]} onLayout={this.onLayout}>
+    return (
+      <View style={[styles.container, { width: this.state.width, height: this.state.height }]} onLayout={this.onLayout}>
         <View style={styles.image}>{image}</View>
         {titleElement}
         {subtitleElement}
       </View>
-	  )
+    )
   }
 }
 
@@ -67,41 +101,6 @@ Page.propTypes = {
     .isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired
-}
-
-const styles = {
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: potrait ? 'center' : 'flex-start',
-    paddingTop: potrait ? 0 : 10
-  },
-  image: {
-    flex: 0,
-    paddingBottom: potrait ? 60 : 10,
-    alignItems: 'center'
-  },
-  padding: {
-    paddingHorizontal: 10
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 26,
-    color: '#fff',
-    paddingBottom: 15
-  },
-  titleLight: {
-    color: '#000'
-  },
-  subtitle: {
-    textAlign: 'center',
-    fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.7)'
-  },
-  subtitleLight: {
-    color: 'rgba(0, 0, 0, 0.7)'
-  }
 }
 
 export default Page
