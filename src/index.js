@@ -28,6 +28,12 @@ class Onboarding extends Component {
 		};
 	}
 
+	componentDidMount() {
+		this.props.onRef(this)
+	}
+	componentWillUnmount() {
+		this.props.onRef(undefined)
+	}
 	componentDidUpdate() {
 		Animated.timing(this.state.backgroundColorAnim, {
 			toValue: 1,
