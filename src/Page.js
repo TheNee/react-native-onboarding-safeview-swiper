@@ -34,8 +34,8 @@ class Page extends React.Component {
         padding: 10
       },
       image: {
-        height: potrait ? width / 2 : height / 3,
-        width: potrait ? height / 2 : width / 3,
+        height: potrait ? width / 1.2 : height / 3,
+        width: potrait ? height / 1.2 : width / 3,
         marginVertical: 10,
         alignItems: 'center'
       },
