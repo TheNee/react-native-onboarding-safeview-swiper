@@ -1,6 +1,6 @@
 {
   "name": "react-native-onboarding-safeview-swiper",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Delightful SafeView Onboarding for your React-Native App",
   "main": "src/index.js",
   "scripts": {
