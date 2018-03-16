@@ -28,12 +28,6 @@ class Onboarding extends Component {
 		};
 	}
 
-	componentDidMount() {
-		this.props.onRef(this)
-	}
-	componentWillUnmount() {
-		this.props.onRef(undefined)
-	}
 	componentDidUpdate() {
 		Animated.timing(this.state.backgroundColorAnim, {
 			toValue: 1,
@@ -73,14 +67,14 @@ class Onboarding extends Component {
 
 		return (
 			<Page
-				isLight={isLight}
-				image={image}
-				title={title}
-				subtitle={subtitle}
-				width={this.state.width || Dimensions.get('window').width}
-				height={this.state.height || Dimensions.get('window').height}
-			/>
-		);
+		isLight={isLight}
+		image={image}
+		title={title}
+		subtitle={subtitle}
+		width={this.state.width || Dimensions.get('window').width}
+		height={this.state.height || Dimensions.get('window').height}
+		/>
+	);
 	};
 
 	render() {
@@ -123,50 +117,52 @@ class Onboarding extends Component {
 			);
 		}
 
+		this.props.onBoardingState(this.state)
+
 		return (
 			<SafeAreaView
-				style={{ flex: 1, backgroundColor, justifyContent: 'center' }}>
-				<StatusBar barStyle={this.state.gone ? 'default' : barStyle} />
-				<FlatList
-					ref={list => {
-						this.flatList = list;
-					}}
-					data={pages}
-					pagingEnabled
-					horizontal
-					getItemLayout={(data, index) => { return {length: Dimensions.get('window').width, offset: Dimensions.get('window').width * index, index} }}
-					showsHorizontalScrollIndicator={false}
-					renderItem={this.renderItem}
-					keyExtractor={this.keyExtractor}
-					onViewableItemsChanged={this.onSwipePageChange}
-					viewabilityConfig={itemVisibleHotfix}
-					extraData={
-						this.state.width // ensure that the list re-renders on orientation change
-					}
-				/>
-				<Pagination
-					gone={() => this.setState({ gone: true })}
-					isLight={isLight}
-					bottomBarHighlight={bottomBarHighlight || alterBottomColor}
-					bottomBarHeight={bottomBarHeight}
-					showSkip={showSkip}
-					showNext={showNext}
-					showDone={showDone}
-					numPages={pages.length}
-					currentPage={this.state.currentPage}
-					onSkip={onSkip}
-					onDone={onDone}
-					onNext={this.goNext}
-					skipLabel={skipLabel}
-					nextLabel={nextLabel}
-					doneLabel={doneLabel}
-					SkipButtonComponent={SkipButtonComponent}
-					DoneButtonComponent={DoneButtonComponent}
-					NextButtonComponent={NextButtonComponent}
-					DotComponent={DotComponent}
-				/>
-			</SafeAreaView>
-		);
+		style={{ flex: 1, backgroundColor, justifyContent: 'center' }}>
+	<StatusBar barStyle={this.state.gone ? 'default' : barStyle} />
+		<FlatList
+		ref={list => {
+			this.flatList = list;
+		}}
+		data={pages}
+		pagingEnabled
+		horizontal
+		getItemLayout={(data, index) => { return {length: Dimensions.get('window').width, offset: Dimensions.get('window').width * index, index} }}
+		showsHorizontalScrollIndicator={false}
+		renderItem={this.renderItem}
+		keyExtractor={this.keyExtractor}
+		onViewableItemsChanged={this.onSwipePageChange}
+		viewabilityConfig={itemVisibleHotfix}
+		extraData={
+			this.state.width // ensure that the list re-renders on orientation change
+	}
+		/>
+		<Pagination
+		gone={() => this.setState({ gone: true })}
+		isLight={isLight}
+		bottomBarHighlight={bottomBarHighlight || alterBottomColor}
+		bottomBarHeight={bottomBarHeight}
+		showSkip={showSkip}
+		showNext={showNext}
+		showDone={showDone}
+		numPages={pages.length}
+		currentPage={this.state.currentPage}
+		onSkip={onSkip}
+		onDone={onDone}
+		onNext={this.goNext}
+		skipLabel={skipLabel}
+		nextLabel={nextLabel}
+		doneLabel={doneLabel}
+		SkipButtonComponent={SkipButtonComponent}
+		DoneButtonComponent={DoneButtonComponent}
+		NextButtonComponent={NextButtonComponent}
+		DotComponent={DotComponent}
+		/>
+		</SafeAreaView>
+	);
 	}
 }
 
