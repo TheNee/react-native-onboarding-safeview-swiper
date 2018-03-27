@@ -1,10 +1,10 @@
-# `<Onboarding />` [![npm](https://img.shields.io/npm/v/react-native-onboarding-swiper.svg)](https://www.npmjs.com/package/react-native-onboarding-swiper) [![npm](https://img.shields.io/npm/dm/react-native-onboarding-swiper.svg)](https://www.npmjs.com/package/react-native-onboarding-swiper)
+# `<Onboarding />` [![npm](https://img.shields.io/npm/v/react-native-onboarding-swiper.svg)](https://www.npmjs.com/package/react-native-onboarding-safeview-swiper)
 
 | ![](demo/simple1.png) | ![](demo/simple2.png) | ![](demo/simple3.png) |
 | --------------------- | --------------------- | --------------------- |
 
 
-There are many ways to onboard people to your mobile app. But for React-Native, there is solely _one_ component that is a) **easy to setup** and b) **highly customizable**: `react-native-onboarding-swiper`.
+There are many ways to onboard people to your mobile app. But for React-Native, there is solely _one_ component that is a) **easy to setup** and b) **highly customizable**: `react-native-onboarding-safeview-swiper`.
 
 Your new users shouldn't jump in at the deep end. First give them a pleasurable, delightful introduction and only then let them explore your awesome app.
 
